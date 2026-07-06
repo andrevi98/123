@@ -1,0 +1,316 @@
+/* ==========================================================================
+   Housy Media — Order Page CSS Makeover
+   For the HDPhotoHub (hd.pics) shopping cart / order form
+   https://housymedia.hd.pics/order
+
+   HOW TO INSTALL
+   --------------
+   Paste this entire file into the custom CSS field of your HDPhotoHub
+   cart / site settings (Settings → Shopping Cart → design/custom CSS).
+   If your dashboard only offers a <head> HTML field, wrap it in
+   <style> ... </style> instead.
+
+   HOW TO RE-BRAND
+   ---------------
+   Every color, radius and shadow lives in the :root block right below.
+   Change the variables — the rest of the file follows automatically.
+   ========================================================================== */
+
+/* Webfont — served by Google, loaded by the visitor's browser */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  /* Brand palette */
+  --hm-brand:        #1d4ed8;   /* primary action color (buttons, links)   */
+  --hm-brand-dark:   #1e40af;   /* hover / pressed                         */
+  --hm-brand-soft:   #eff4ff;   /* tinted backgrounds (selected, hover)    */
+  --hm-ink:          #0f172a;   /* headings / strong text                  */
+  --hm-text:         #334155;   /* body text                               */
+  --hm-muted:        #64748b;   /* secondary text                          */
+  --hm-page-bg:      #f5f7fb;   /* page background                         */
+  --hm-card-bg:      #ffffff;   /* panels & cards                          */
+  --hm-border:       #e2e8f0;   /* hairlines                               */
+  --hm-success:      #059669;
+  --hm-danger:       #dc2626;
+
+  /* Shape & depth */
+  --hm-radius:       14px;      /* cards / panels                          */
+  --hm-radius-sm:    10px;      /* buttons / inputs                        */
+  --hm-shadow:       0 1px 2px rgba(15, 23, 42, .04), 0 8px 24px rgba(15, 23, 42, .06);
+  --hm-shadow-hover: 0 2px 4px rgba(15, 23, 42, .06), 0 12px 32px rgba(15, 23, 42, .10);
+  --hm-focus-ring:   0 0 0 4px rgba(29, 78, 216, .15);
+
+  --hm-font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+             'Helvetica Neue', Arial, sans-serif;
+}
+
+/* --------------------------------------------------------------------------
+   1. Base — page background & typography
+   -------------------------------------------------------------------------- */
+body {
+  font-family: var(--hm-font) !important;
+  background-color: var(--hm-page-bg) !important;
+  color: var(--hm-text);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+  font-family: var(--hm-font) !important;
+  color: var(--hm-ink);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+a { color: var(--hm-brand); }
+a:hover { color: var(--hm-brand-dark); }
+
+.text-muted, small { color: var(--hm-muted) !important; }
+
+hr { border-color: var(--hm-border); opacity: 1; }
+
+/* --------------------------------------------------------------------------
+   2. Cards / panels — the service list, order summary, form sections
+   -------------------------------------------------------------------------- */
+.card, .panel, .well {
+  background: var(--hm-card-bg);
+  border: 1px solid var(--hm-border) !important;
+  border-radius: var(--hm-radius) !important;
+  box-shadow: var(--hm-shadow);
+  transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
+}
+
+.card:hover { box-shadow: var(--hm-shadow-hover); }
+
+.card-header, .panel-heading, .modal-header {
+  background: transparent !important;
+  border-bottom: 1px solid var(--hm-border) !important;
+  border-radius: var(--hm-radius) var(--hm-radius) 0 0 !important;
+  font-weight: 600;
+  color: var(--hm-ink);
+  padding: 1rem 1.25rem;
+}
+
+.card-footer, .modal-footer {
+  background: transparent !important;
+  border-top: 1px solid var(--hm-border) !important;
+}
+
+/* Selected / highlighted service option */
+.card.border-primary, .card.selected, .list-group-item.active {
+  border-color: var(--hm-brand) !important;
+  background: var(--hm-brand-soft);
+  box-shadow: 0 0 0 1px var(--hm-brand), var(--hm-shadow);
+}
+
+.list-group-item.active { color: var(--hm-ink) !important; }
+
+/* --------------------------------------------------------------------------
+   3. Buttons
+   -------------------------------------------------------------------------- */
+.btn {
+  font-family: var(--hm-font) !important;
+  font-weight: 600;
+  border-radius: var(--hm-radius-sm) !important;
+  padding: .625rem 1.25rem;
+  transition: background-color .15s ease, border-color .15s ease,
+              box-shadow .15s ease, transform .1s ease;
+}
+
+.btn:active { transform: translateY(1px); }
+.btn:focus-visible { box-shadow: var(--hm-focus-ring) !important; }
+
+.btn-primary, .btn-success.btn-checkout, .btn-info {
+  background-color: var(--hm-brand) !important;
+  border-color: var(--hm-brand) !important;
+  color: #fff !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .12);
+}
+
+.btn-primary:hover, .btn-primary:focus,
+.btn-info:hover, .btn-info:focus {
+  background-color: var(--hm-brand-dark) !important;
+  border-color: var(--hm-brand-dark) !important;
+  box-shadow: 0 6px 16px rgba(29, 78, 216, .28);
+}
+
+.btn-outline-primary {
+  color: var(--hm-brand) !important;
+  border-color: var(--hm-brand) !important;
+  background: transparent !important;
+}
+
+.btn-outline-primary:hover {
+  background: var(--hm-brand-soft) !important;
+  color: var(--hm-brand-dark) !important;
+}
+
+.btn-secondary, .btn-default, .btn-light {
+  background: #fff !important;
+  border: 1px solid var(--hm-border) !important;
+  color: var(--hm-ink) !important;
+}
+
+.btn-secondary:hover, .btn-default:hover, .btn-light:hover {
+  background: var(--hm-page-bg) !important;
+  border-color: #cbd5e1 !important;
+}
+
+.btn-success {
+  background-color: var(--hm-success) !important;
+  border-color: var(--hm-success) !important;
+}
+
+.btn-danger {
+  background-color: var(--hm-danger) !important;
+  border-color: var(--hm-danger) !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. Forms — address, scheduling, contact fields
+   -------------------------------------------------------------------------- */
+label, .form-label, .col-form-label {
+  font-weight: 600;
+  color: var(--hm-ink);
+  font-size: .9rem;
+  margin-bottom: .35rem;
+}
+
+.form-control, .form-select,
+input[type="text"], input[type="email"], input[type="tel"],
+input[type="number"], input[type="date"], input[type="time"],
+select, textarea {
+  font-family: var(--hm-font) !important;
+  border: 1.5px solid var(--hm-border) !important;
+  border-radius: var(--hm-radius-sm) !important;
+  background-color: #fff;
+  color: var(--hm-ink);
+  padding: .6rem .85rem;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+.form-control:focus, .form-select:focus,
+input:focus, select:focus, textarea:focus {
+  border-color: var(--hm-brand) !important;
+  box-shadow: var(--hm-focus-ring) !important;
+  outline: none;
+}
+
+.form-control::placeholder, textarea::placeholder { color: #94a3b8; }
+
+/* Native checkboxes, radios, switches pick up the brand color */
+input[type="checkbox"], input[type="radio"], .form-check-input {
+  accent-color: var(--hm-brand);
+  width: 1.1em;
+  height: 1.1em;
+}
+
+.form-check-input:checked {
+  background-color: var(--hm-brand) !important;
+  border-color: var(--hm-brand) !important;
+}
+
+.input-group-text {
+  background: var(--hm-page-bg);
+  border: 1.5px solid var(--hm-border);
+  border-radius: var(--hm-radius-sm);
+  color: var(--hm-muted);
+  font-weight: 500;
+}
+
+/* --------------------------------------------------------------------------
+   5. Tables — order summary line items
+   -------------------------------------------------------------------------- */
+.table {
+  color: var(--hm-text);
+  border-color: var(--hm-border);
+}
+
+.table thead th {
+  border-bottom: 1px solid var(--hm-border) !important;
+  color: var(--hm-muted);
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.table td, .table th { border-color: var(--hm-border); padding: .75rem; }
+.table-hover tbody tr:hover { background-color: var(--hm-brand-soft); }
+
+/* --------------------------------------------------------------------------
+   6. Badges, alerts, prices
+   -------------------------------------------------------------------------- */
+.badge {
+  font-weight: 600;
+  border-radius: 999px;
+  padding: .35em .8em;
+  letter-spacing: .01em;
+}
+
+.badge.bg-primary, .badge-primary { background-color: var(--hm-brand) !important; }
+.badge.bg-success, .badge-success { background-color: var(--hm-success) !important; }
+
+.alert { border-radius: var(--hm-radius-sm); border-width: 1px; }
+
+/* Price emphasis — common price classes on hd.pics carts */
+.price, .item-price, .total, .cart-total, .order-total {
+  color: var(--hm-ink);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+/* --------------------------------------------------------------------------
+   7. Navbar / header — light touch so the brand header feels crisp
+   -------------------------------------------------------------------------- */
+.navbar {
+  background-color: var(--hm-card-bg) !important;
+  border-bottom: 1px solid var(--hm-border);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, .04);
+}
+
+.navbar .nav-link { font-weight: 500; color: var(--hm-text) !important; }
+.navbar .nav-link:hover, .navbar .nav-link.active { color: var(--hm-brand) !important; }
+.navbar-brand { font-weight: 800; color: var(--hm-ink) !important; letter-spacing: -0.02em; }
+
+/* --------------------------------------------------------------------------
+   8. Modals, dropdowns, misc chrome
+   -------------------------------------------------------------------------- */
+.modal-content {
+  border: none;
+  border-radius: var(--hm-radius);
+  box-shadow: 0 24px 64px rgba(15, 23, 42, .25);
+}
+
+.dropdown-menu {
+  border: 1px solid var(--hm-border);
+  border-radius: var(--hm-radius-sm);
+  box-shadow: var(--hm-shadow-hover);
+  overflow: hidden;
+}
+
+.dropdown-item:hover, .dropdown-item:focus {
+  background: var(--hm-brand-soft);
+  color: var(--hm-brand-dark);
+}
+
+.progress { border-radius: 999px; background: var(--hm-border); }
+.progress-bar { background-color: var(--hm-brand); }
+
+::selection { background: var(--hm-brand); color: #fff; }
+
+/* Subtle, brand-neutral scrollbar (WebKit) */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 999px; }
+::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* --------------------------------------------------------------------------
+   9. Small screens
+   -------------------------------------------------------------------------- */
+@media (max-width: 576px) {
+  .card { border-radius: var(--hm-radius-sm) !important; }
+  .btn { width: auto; padding: .6rem 1rem; }
+  h1, .h1 { font-size: 1.6rem; }
+}
