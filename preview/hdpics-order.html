@@ -281,6 +281,12 @@ button.placeorder:disabled { background:#4169E1; opacity:0.5; color:#000; }
         </div>
       </div>
 
+
+<div class="allproducts closed" style="background:#fdfdfd; box-shadow:0 0 1px #aaa, 1px 1px 1px #ddd; margin:10px; width:100%;">
+  <div class="titlebar" style="background:#f0f0f0; cursor:pointer; font-size:0.85em; padding:0.15em 0.5em;">
+    Hidden / Extra Products &nbsp;<span style="font-size:0.85em; opacity:0.7;">(NOTE: This option is only displayed to team members, not clients)</span>
+  </div>
+</div>
     </div>
   </div>
 </div>
@@ -444,5 +450,13 @@ button.placeorder:disabled { background:#4169E1; opacity:0.5; color:#000; }
   </div>
 </div>
 
+
+<div id="hdph-cb" style="display:flex;position:fixed;bottom:0;left:0;right:0;z-index:2147483647;background:#1a1a1a;color:#f0f0f0;padding:14px 20px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,sans-serif;font-size:15px;line-height:1.5;box-shadow:0 -2px 16px rgba(0,0,0,.5);align-items:center;gap:16px;flex-wrap:wrap;">
+  <p style="flex:1;margin:0;min-width:220px;">This site uses cookies from Google and Meta for analytics, advertising, and embedded video. Declining will not affect your ability to view this listing. <a href="#" style="color:#aaa;white-space:nowrap;">Cookie policy</a></p>
+  <div style="display:flex;gap:8px;flex-shrink:0;">
+    <button onclick="hdphConsentDecline()" style="background:none;border:1px solid rgba(255,255,255,0.45);color:#f0f0f0;padding:7px 20px;border-radius:4px;cursor:pointer;font-size:14px;font-family:inherit;">Decline</button>
+    <button onclick="hdphConsentAccept()" style="background:none;border:1px solid rgba(255,255,255,0.45);color:#f0f0f0;padding:7px 20px;border-radius:4px;cursor:pointer;font-size:14px;font-family:inherit;">Accept cookies</button>
+  </div>
+</div>
 </body>
 </html>

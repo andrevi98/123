@@ -220,7 +220,6 @@ h1, h2, h3, h4, h5, h6 {
   display: block;
   width: 100% !important;
   height: auto !important;
-  aspect-ratio: 370 / 207;
   object-fit: cover;
   border-radius: 0 !important;
 }
@@ -610,6 +609,71 @@ h1, h2, h3, h4, h5, h6 {
   .cart-products .product-category:hover,
   .cart-gcal .timeslot:hover,
   .cart-order button.placeorder:hover { transform: none; }
+}
+
+/* --------------------------------------------------------------------------
+   14. Cookie consent banner — the first thing every new client sees
+   -------------------------------------------------------------------------- */
+#hdph-cb {
+  background: rgba(13, 20, 32, .93) !important;
+  backdrop-filter: saturate(140%) blur(12px);
+  -webkit-backdrop-filter: saturate(140%) blur(12px);
+  border-top: 1px solid rgba(255, 255, 255, .12) !important;
+  box-shadow: 0 -8px 32px -12px rgba(0, 0, 0, .6) !important;
+  font-family: 'Montserrat', sans-serif !important;
+  font-size: 14px !important;
+  padding: 16px 22px !important;
+}
+#hdph-cb p { color: #e6eaf2 !important; }
+#hdph-cb a { color: #aebbdd !important; text-underline-offset: 3px; }
+#hdph-cb a:hover { color: #fff !important; }
+
+#hdph-cb button {
+  font-family: 'Montserrat', sans-serif !important;
+  font-weight: 600 !important;
+  border-radius: 10px !important;
+  padding: 9px 22px !important;
+  transition: background-color var(--hm-fast), border-color var(--hm-fast),
+              transform var(--hm-fast);
+}
+#hdph-cb button:hover { transform: translateY(-1px); }
+
+#hdph-cb button[onclick*="Accept"] {
+  background: var(--hm-brand) !important;
+  border-color: var(--hm-brand) !important;
+  color: #fff !important;
+}
+#hdph-cb button[onclick*="Decline"]:hover {
+  background: rgba(255, 255, 255, .12) !important;
+  border-color: rgba(255, 255, 255, .6) !important;
+}
+
+/* --------------------------------------------------------------------------
+   15. Team-only panels — visible to you, not to clients, but tidy anyway
+   -------------------------------------------------------------------------- */
+.cart-products .allproducts {
+  border: 1px solid var(--hm-border);
+  border-radius: 12px !important;
+  box-shadow: none !important;
+  overflow: hidden;
+}
+.cart-products .allproducts .titlebar {
+  background: #f4f6fa !important;
+  color: var(--hm-muted);
+  font-weight: 600;
+  padding: .55em .85em !important;
+}
+
+.cart-location .admin-warning {
+  border-radius: var(--hm-radius-sm);
+  border-color: color-mix(in srgb, var(--hm-danger) 35%, #fff) !important;
+  background: color-mix(in srgb, var(--hm-danger) 7%, #fff) !important;
+  color: var(--hm-danger) !important;
+  padding: .7em 1em !important;
+}
+
+.cart-gcal .skipsched, .cart-order .content > div:first-child {
+  color: var(--hm-muted) !important;
 }
 
 @media print {
