@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HDPhotoHub Order Page — Structural Mock</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700">
+
+<!-- =========================================================================
+     BASELINE — the CSS HDPhotoHub generates for this site, reproduced from the
+     live page source so this mock starts from the real "before" look.
+     No personal data, no tracking, no API keys: structure and styling only.
+     ========================================================================= -->
+<style>
+html, body { font-family:'Montserrat', sans-serif; background:#fff; color:#000; margin:0; }
+h1,h2,h3,h4,h5,h6 { font-family:'Montserrat', serif; }
+a { color:#000; }
+.bg1 { background:#fff; }
+body { --radiocheckcolor:#7cf; }
+
+.brandheader { background:#f8f8f8; color:#000; }
+.brandheader .headerlogo { max-width:calc(100vw - 40px); max-height:70px; margin:15px 30px; }
+.brandheader .nav { position:absolute; top:40px; right:10px; }
+.brandheader .nav a { color:#555; font-family:'Montserrat'; font-size:15px; text-decoration:none; display:inline-block; padding:1em 1.5em; }
+.brandheader .nav a:hover { color:#222; background:rgba(0,0,0,0.07); }
+
+.fontscale { font-size:1em; }
+@media screen and (max-width:639px) { .fontscale { font-size:0.6em; } }
+@media screen and (min-width:640px) and (max-width:1023px) { .fontscale { font-size:0.8em; } }
+
+.cart, .cart-order, .cart-complete { background:rgba(255,255,255,0.5); }
+.cart-order .cart { background:rgba(255,255,255,0); }
+
+.cart-products { font-size:1.5rem; }
+.cart-products .product-category { background:#fcfcfc; box-shadow:0 0 1px #aaa, 1px 1px 1px #ddd; }
+.cart-products .product-category label { cursor:pointer; }
+.cart-products .regprice { color:#f77; font-size:0.7em; white-space:nowrap; }
+.product-category { border-radius:12px; }
+.product-category img { border-radius:12px; }
+.catname > span { font-size:1em; }
+.prodDesc span { font-size:1em !important; }
+.prodDesc > div { font-size:0.6em !important; }
+input, select { border-radius:0.25em; }
+
+.cart-location { font-size:1.5rem; }
+.cart-location input, .cart-location select { border:1px solid #ddd; font-family:'Montserrat'; font-size:1.5rem; padding:0.15em 0.3em; }
+.cart-location .cap { width:110px; margin-top:10px; }
+.cart-location .inp { width:285px; margin:3px 0; }
+.cart-location .req { color:#e00; font-size:0.8em; font-weight:700; position:relative; top:-0.56em; margin-left:0.15em; }
+
+.cart-gcal { font-size:1.5rem; }
+.cart-gcal .calendar { border:2px solid #ddd; border-collapse:collapse; width:100%; }
+.cart-gcal .calendar thead td { background:#555 !important; color:#fff !important; }
+.cart-gcal .calendar th { background:#f8f8f8; border:1px solid #ccc; color:#777; font-size:0.65em; padding:0.3em; width:14.3%; }
+.cart-gcal .calendar td { background:#fdfdfd; border:1px solid #ddd; padding:0.3em; vertical-align:top; }
+.cart-gcal .calendar .day { font-size:0.8em; }
+.cart-gcal .timeslot { background:#7cf; border-radius:4px; color:#fff; cursor:pointer; font-size:0.7em; margin:0 1px 4px 1px; min-height:1.5em; text-align:center; display:flex; align-items:center; justify-content:center; }
+.cart-gcal .timeslot:hover { background:#49c; }
+.cart-gcal .timeslot.selected { background:#258; }
+.cart-gcal .calendar .calheader { background:#000 !important; }
+.cart-gcal .timeslot { background:#000 !important; }
+.cart-gcal .timeslot:hover { background:#808080 !important; }
+.cart-gcal .timeslot.selected { background:#4169E1 !important; }
+
+.cart-note { font-size:1.5rem; }
+.cart-note textarea { border:1px solid #ddd; font-family:'Montserrat'; font-size:1.5rem; padding:0.15em 0.3em; width:100%; }
+
+.cart-payment { font-size:1.5rem; }
+.cart-payment input, .cart-payment select { font-family:'Montserrat'; font-size:1.5rem; padding:0.15em 0.3em; border:1px solid #ddd; }
+.cart-payment label { cursor:pointer; display:inline-block; line-height:1.1em; margin:0.2em 0 0.3em 0; }
+.cart-payment .cap { width:110px; margin-top:10px; }
+.cart-payment .inp { width:285px; margin:3px 0; }
+.cart-payment .payopt { outline:1px solid #bbb; border-radius:0.25em; padding:0.3em 0.75em; }
+.cart-payment .payopt.selected { outline:2px solid #444; }
+
+.cart-order { font-size:1.5rem; }
+.cart-order button { background:#c0e8ff; border:1px solid #80a8c0; border-radius:0.3em; color:#555; cursor:pointer; font-size:1.2em; font-weight:200; padding:0.3em 1em; }
+button.placeorder { border-color:#000; color:#000; background:#4169E1; opacity:1; }
+button.placeorder:hover { background:#808080; }
+button.placeorder:disabled { background:#4169E1; opacity:0.5; color:#000; }
+
+.brandfooter .icon { display:inline-block; font-size:1.5em; margin:0.2em 0 0.1em 0.4em; opacity:0.8; padding:0.3em; text-align:center; width:1.2em; }
+.footer { background:#000; color:#fff; padding:1.7em; font-size:12px; }
+.footer a { color:#fff; opacity:0.8; }
+.footer .footer-text { text-align:center; }
+.footer .norm { opacity:0.6; }
+</style>
+
+<!-- Comment out the line below to see the stock "before" look -->
+<link rel="stylesheet" href="../css/order-makeover.css">
+</head>
+
+<body style="height:auto; background:linear-gradient(155deg,#8ea2b8 0%,#b9c6d4 45%,#e6ebf1 100%) center top / cover no-repeat fixed; overflow-x:hidden !important;">
+
+<div style="position:relative; width:100%; z-index:166;">
+  <div class="brandheader bg1" style="position:relative; width:100%;">
+    <div style="width:100%; display:inline-block; text-align:left;">
+      <a href="#" class="brandanchor"><img class="headerlogo" alt="Housy Media"
+        src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='70'%3E%3Crect width='88' height='70' fill='%230b1220'/%3E%3Ctext x='44' y='40' font-family='sans-serif' font-size='13' font-weight='700' fill='%23fff' text-anchor='middle'%3EHOUSY%3C/text%3E%3Ctext x='44' y='55' font-family='sans-serif' font-size='11' fill='%239fb0c6' text-anchor='middle'%3EMEDIA%3C/text%3E%3C/svg%3E"
+        style="vertical-align:middle; width:88px; height:70px;"></a>
+    </div>
+    <div class="nav" style="opacity:1; display:block;">
+      <a href="#" class="nav0">Order</a><a href="#" class="nav3">Client Login</a>
+    </div>
+  </div>
+</div>
+
+<div class="title fsize" style="z-index:15; color:#000; text-align:center; margin:0 auto; font-size:25.8px;">
+  <div class="fontscale">
+    <div class="title-text" style="font-family:Montserrat; font-size:2em; padding:0.75em 0 0.5em 0;">Order Real Estate Media Services</div>
+  </div>
+</div>
+
+<!-- ===================== SELECT SERVICES ===================== -->
+<div class="cart cart-products" style="margin:0 auto; padding:5px 30px; max-width:1200px; z-index:13;">
+  <div class="fontscale"><h2 style="margin:0 0 0.5em; opacity:1;">Select Services</h2></div>
+  <div class="wrapper" style="overflow:hidden;">
+    <div class="content" style="display:flex; flex-wrap:wrap; margin:-10px -10px 30px; opacity:1;">
+
+      <div class="product-category pc74816" hd-pcid="74816" hd-divider="true" style="margin:10px; background-color:transparent; box-shadow:none; text-align:center; width:370px !important;">
+        <div style="padding:15px 20px;"><div class="catname" style="font-size:1.5rem; font-weight:700; text-align:center;"><span>Real Estate Media Standard Packages</span></div></div>
+      </div>
+
+      <div class="product-category pc74827" hd-pcid="74827" hd-divider="false" style="margin:10px; width:370px !important;">
+        <img class="propheight" width="370" height="207" style="width:370px; height:207px;"
+          src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='370' height='207'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23334155'/%3E%3Cstop offset='1' stop-color='%2394a3b8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='370' height='207' fill='url(%23g)'/%3E%3C/svg%3E">
+        <div style="padding:15px 20px 20px 20px;">
+          <div class="catname" style="font-size:1.5rem; font-weight:700;"><span></span></div>
+          <div>
+            <label for="prod376984" class="product pc74827 p376984 package">
+              <table border="0" cellspacing="0" cellpadding="0" style="font-size:1.25rem; margin-top:0.5em;">
+                <tbody><tr>
+                  <td style="width:28px; min-width:28px; vertical-align:top;"><input type="checkbox" name="products" id="prod376984" checked></td>
+                  <td class="prodDesc" style="width:310px; vertical-align:top;">
+                    <span class="pname376984">Prestige Package</span>
+                    <div style="font-size:0.75em; margin:0.1em 0 0.3em 0; opacity:0.8;">
+                      <ul style="margin:0.3em 0 0 -0.5em;"><li>50 HDR Photos</li><li>Drone Photos + Video</li><li>iGuide 360 Virtual Tour + Floor Plans</li><li>Signature Video</li><li>Signature Reel</li></ul>
+                    </div>
+                  </td>
+                  <td class="price price376984" style="width:52px; text-align:right; vertical-align:top; white-space:nowrap;">
+                    $1,399.00<div class="regprice">(reg. $1,449.00)</div>
+                  </td>
+                </tr></tbody>
+              </table>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-category pc74814" hd-pcid="74814" hd-divider="false" style="margin:10px; width:370px !important;">
+        <img class="propheight" width="370" height="207" style="width:370px; height:207px;"
+          src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='370' height='207'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%233f4d63'/%3E%3Cstop offset='1' stop-color='%23a8b6c6'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='370' height='207' fill='url(%23g)'/%3E%3C/svg%3E">
+        <div style="padding:15px 20px 20px 20px;">
+          <div class="catname" style="font-size:1.5rem; font-weight:700;"><span></span></div>
+          <div>
+            <label for="prod376957" class="product pc74814 p376957 package">
+              <table border="0" cellspacing="0" cellpadding="0" style="font-size:1.25rem; margin-top:0.5em;">
+                <tbody><tr>
+                  <td style="width:28px; min-width:28px; vertical-align:top;"><input type="checkbox" name="products" id="prod376957"></td>
+                  <td class="prodDesc" style="width:310px; vertical-align:top;">
+                    <span class="pname376957">Full Launch Package</span>
+                    <div style="font-size:0.75em; margin:0.1em 0 0.3em 0; opacity:0.8;">
+                      <ul style="margin:0.3em 0 0 -0.5em;"><li>50 HDR Photos</li><li>Essential Video</li><li>Essential Reel</li><li>Drone Photos + Video</li><li>iGuide or Matterport 360 Tour + Floor Plans</li></ul>
+                    </div>
+                  </td>
+                  <td class="price price376957" style="width:52px; text-align:right; vertical-align:top; white-space:nowrap;">
+                    $999.00<div class="regprice">(reg. $1,321.00)</div>
+                  </td>
+                </tr></tbody>
+              </table>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-category pc74824" hd-pcid="74824" hd-divider="false" style="margin:10px; width:370px !important;">
+        <img class="propheight" width="370" height="207" style="width:370px; height:207px;"
+          src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='370' height='207'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%234a5568'/%3E%3Cstop offset='1' stop-color='%23bcc6d2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='370' height='207' fill='url(%23g)'/%3E%3C/svg%3E">
+        <div style="padding:15px 20px 20px 20px;">
+          <div class="catname" style="font-size:1.5rem; font-weight:700;"><span></span></div>
+          <div>
+            <label for="prod376970" class="product pc74824 p376970 package">
+              <table border="0" cellspacing="0" cellpadding="0" style="font-size:1.25rem; margin-top:0.5em;">
+                <tbody><tr>
+                  <td style="width:28px; min-width:28px; vertical-align:top;"><input type="checkbox" name="products" id="prod376970"></td>
+                  <td class="prodDesc" style="width:310px; vertical-align:top;">
+                    <span class="pname376970">Budget Package</span>
+                    <div style="font-size:0.75em; margin:0.1em 0 0.3em 0; opacity:0.8;">
+                      <ul style="margin:0.3em 0 0 -0.5em;"><li>50 HDR Photos</li><li>2D Floor Plans</li></ul>
+                    </div>
+                  </td>
+                  <td class="price price376970" style="width:52px; text-align:right; vertical-align:top; white-space:nowrap;">
+                    $295.00<div class="regprice">(reg. $324.00)</div>
+                  </td>
+                </tr></tbody>
+              </table>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-category pc74813" hd-pcid="74813" hd-divider="true" style="margin:10px; background-color:transparent; box-shadow:none; text-align:center; width:370px !important;">
+        <div style="padding:15px 20px;"><div class="catname" style="font-size:1.5rem; font-weight:700; text-align:center;"><span>A La Carte</span></div></div>
+      </div>
+
+      <div class="product-category pc58403" hd-pcid="58403" hd-divider="false" style="margin:10px; width:370px !important;">
+        <img class="propheight" width="370" height="208" style="width:370px; height:208px;"
+          src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='370' height='208'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232f3b4d'/%3E%3Cstop offset='1' stop-color='%2399a7b8'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='370' height='208' fill='url(%23g)'/%3E%3C/svg%3E">
+        <div style="padding:15px 20px 20px 20px;">
+          <div class="catname" style="font-size:1.5rem; font-weight:700;"><span>Photo</span></div>
+          <div>
+            <label for="prod283627" class="product pc58403 p283627">
+              <table border="0" cellspacing="0" cellpadding="0" style="font-size:1.25rem; margin-top:0.5em;">
+                <tbody><tr>
+                  <td style="width:28px; min-width:28px; vertical-align:top;"><input type="checkbox" name="products" id="prod283627" checked></td>
+                  <td class="prodDesc" style="width:310px; vertical-align:top;">
+                    <span class="pname283627">50 HDR Photos</span>
+                    <div style="font-size:0.75em; margin:0.1em 0 0.3em 0; opacity:0.8;"><div style="margin-top:0.3em;">50 HDR Photos Formatted for MLS</div></div>
+                  </td>
+                  <td class="price price283627" style="width:52px; text-align:right; vertical-align:top; white-space:nowrap;">$199.00</td>
+                </tr></tbody>
+              </table>
+            </label>
+            <label for="prod340385" class="product pc58403 p340385">
+              <table border="0" cellspacing="0" cellpadding="0" style="font-size:1.25rem; margin-top:0.5em;">
+                <tbody><tr>
+                  <td style="width:28px; min-width:28px; vertical-align:top;"><input type="checkbox" name="products" id="prod340385"></td>
+                  <td class="prodDesc" style="width:310px; vertical-align:top;">
+                    <span class="pname340385">15 Twilight Photos</span>
+                    <div style="font-size:0.75em; margin:0.1em 0 0.3em 0; opacity:0.8;"><div style="margin-top:0.3em;">Real Twilight Photos</div></div>
+                  </td>
+                  <td class="price price340385" style="width:52px; text-align:right; vertical-align:top; white-space:nowrap;">$199.00</td>
+                </tr></tbody>
+              </table>
+            </label>
+            <label for="prod340387" class="product pc58403 p340387">
+              <table border="0" cellspacing="0" cellpadding="0" style="font-size:1.25rem; margin-top:0.5em;">
+                <tbody><tr>
+                  <td style="width:28px; min-width:28px; vertical-align:top;"><input type="checkbox" name="products" id="prod340387"></td>
+                  <td class="prodDesc" style="width:310px; vertical-align:top;"><span class="pname340387">Virtual Staging</span></td>
+                  <td class="qty qty340387" style="width:30px; position:relative; vertical-align:top; text-align:center; white-space:nowrap; padding:0 5px;">
+                    <div style="color:#0075ff; font-family:sans-serif; font-size:9px; font-weight:700; position:absolute; left:10px; top:-2px;">QTY</div>
+                    <select id="pqty340387" style="padding:12px 0.1em 0.1em 0.1em; margin:-5px 0 -7px 0;"><option>1</option><option>2</option></select>
+                  </td>
+                  <td class="price price340387" style="width:52px; text-align:right; vertical-align:top; white-space:nowrap;">$25.00</td>
+                </tr></tbody>
+              </table>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-category pc58411" hd-pcid="58411" hd-divider="false" style="margin:10px; width:370px !important;">
+        <img class="propheight" width="370" height="208" style="width:370px; height:208px;"
+          src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='370' height='208'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23273244'/%3E%3Cstop offset='1' stop-color='%238e9db0'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='370' height='208' fill='url(%23g)'/%3E%3C/svg%3E">
+        <div style="padding:15px 20px 20px 20px;">
+          <div class="catname" style="font-size:1.5rem; font-weight:700;"><span>Reel</span></div>
+          <div>
+            <label for="prod361577" class="product pc58411 p361577">
+              <table border="0" cellspacing="0" cellpadding="0" style="font-size:1.25rem; margin-top:0.5em;">
+                <tbody><tr>
+                  <td style="width:28px; min-width:28px; vertical-align:top;"><input type="checkbox" name="products" id="prod361577"></td>
+                  <td class="prodDesc" style="width:310px; vertical-align:top;"><span class="pname361577">Signature Reel</span></td>
+                  <td class="price price361577" style="width:52px; text-align:right; vertical-align:top; white-space:nowrap;">$375.00</td>
+                </tr></tbody>
+              </table>
+            </label>
+            <label for="prod283638" class="product pc58411 p283638">
+              <table border="0" cellspacing="0" cellpadding="0" style="font-size:1.25rem; margin-top:0.5em;">
+                <tbody><tr>
+                  <td style="width:28px; min-width:28px; vertical-align:top;"><input type="checkbox" name="products" id="prod283638"></td>
+                  <td class="prodDesc" style="width:310px; vertical-align:top;">
+                    <span class="pname283638">Essential Reel</span>
+                    <div style="font-size:0.75em; margin:0.1em 0 0.3em 0; opacity:0.8;"><div style="margin-top:0.3em;">Proper Vertical Video Formatted For Social Media<br>Standard Agent Intro Included<br>Standard Captions</div></div>
+                  </td>
+                  <td class="price price283638" style="width:52px; text-align:right; vertical-align:top; white-space:nowrap;">$299.00</td>
+                </tr></tbody>
+              </table>
+            </label>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PROPERTY INFORMATION ===================== -->
+<div class="cart cart-location" style="margin:0 auto; padding:5px 30px; max-width:1200px; z-index:12;">
+  <div class="fontscale"><h2 style="margin:0 0 0.5em; opacity:1;">Property Information</h2></div>
+  <div class="wrapper" style="overflow:hidden;">
+    <div class="content" style="margin-bottom:40px; opacity:1;">
+      <div style="display:flex; flex-wrap:wrap; margin-right:-40px;">
+        <div class="col1" style="flex-basis:300px; flex-grow:1; margin:10px 40px 10px 0">
+          <div style="display:flex; flex-wrap:wrap;">
+            <div class="cap" style="width:65px;"><span style="white-space:nowrap;">Address<span class="req">*</span></span></div>
+            <div class="inp" style="width:95px;"><input type="text" name="search_address" maxlength="100" style="width:100%;" placeholder="Enter a location"></div>
+            <div class="cap" style="width:65px;"></div>
+            <div class="inp" style="width:95px;"><input type="text" name="search_address2" maxlength="100" style="width:100%;"></div>
+            <div class="cap" style="width:65px;"><span style="white-space:nowrap;">City<span class="req">*</span></span></div>
+            <div class="inp" style="width:95px;"><input type="text" name="search_city" maxlength="30" style="width:100%;"></div>
+            <div class="cap" style="width:65px;"><span style="white-space:nowrap;">Province<span class="req">*</span></span></div>
+            <div class="inp" style="width:95px;"><select name="state" style="width:calc(100% + 16px);"><option value="" selected></option><option>ON</option><option>BC</option></select></div>
+            <div class="cap" style="width:65px;"><span style="white-space:nowrap;">Postal Code<span class="req">*</span></span></div>
+            <div class="inp" style="width:95px;"><input type="text" name="search_zipcode" maxlength="7" style="width:100%;"></div>
+            <div class="cap" style="width:65px;"></div>
+          </div>
+        </div>
+        <div class="col2" style="flex-basis:300px; flex-grow:1; margin:10px 40px 10px 0">
+          <div style="display:flex; flex-wrap:wrap;">
+            <div class="cap" style="width:65px;"><span style="white-space:nowrap;">Square Feet</span></div>
+            <div class="inp" style="width:95px;"><input type="text" name="squarefeet" maxlength="7" style="width:100%;"></div>
+            <div class="cap" style="width:65px;"><span style="white-space:nowrap;">MLS Number</span></div>
+            <div class="inp" style="width:95px;"><input type="text" name="mls" maxlength="24" style="width:100%;"></div>
+            <div class="cap" style="width:65px;"><span style="white-space:nowrap;">Bedrooms</span></div>
+            <div class="inp" style="width:95px;"><input type="text" name="bedrooms" maxlength="2" style="width:100%;"></div>
+            <div class="cap" style="width:65px;"><span style="white-space:nowrap;">Bathrooms</span></div>
+            <div class="inp" style="width:95px;"><input type="text" name="bathrooms" maxlength="5" style="width:100%;"></div>
+            <div class="cap" style="width:65px;"><span style="white-space:nowrap;">Lot Size</span></div>
+            <div class="inp" style="width:95px;"><input type="text" name="lotsize" maxlength="16" style="width:100%;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== APPOINTMENT TIME ===================== -->
+<div class="cart cart-gcal" style="margin:0 auto; padding:5px 30px; max-width:1200px; z-index:10;">
+  <div class="fontscale"><h2 style="margin:0 0 0.5em 0; opacity:1;">Appointment Time</h2></div>
+  <div class="wrapper" style="margin:0 -20px;">
+    <div class="content" style="margin-bottom:30px; padding:0 20px; overflow-x:auto;">
+      <div class="caption" style="margin:-0.15em 0 0.5em 0;">Please select an appointment date and time.</div>
+      <div class="calendars">
+        <table class="calendar">
+          <thead><tr><td class="calheader" colspan="7" style="padding:0.4em; text-align:center;">September 2026</td></tr></thead>
+          <tbody>
+            <tr><th>Sun</th><th>Mon</th><th>Tue</th><th>Wed</th><th>Thu</th><th>Fri</th><th>Sat</th></tr>
+            <tr>
+              <td><div class="day past">30</div></td>
+              <td><div class="day">31</div><div class="timeslot">9:00a</div><div class="timeslot">1:00p</div></td>
+              <td><div class="day">1</div><div class="timeslot selected">10:30a</div><div class="timeslot">3:00p</div></td>
+              <td><div class="day">2</div><div class="timeslot">9:00a</div></td>
+              <td><div class="day">3</div><div class="timeslot">11:00a</div><div class="timeslot">2:00p</div></td>
+              <td><div class="day">4</div></td>
+              <td><div class="day">5</div><div class="timeslot">10:00a</div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== ADDITIONAL INFORMATION ===================== -->
+<div class="cart cart-note" style="margin:0 auto; padding:5px 30px; max-width:1200px; z-index:7;">
+  <div class="fontscale"><h2 style="margin:0 0 0.5em 0; opacity:1;">Additional Information</h2></div>
+  <div class="wrapper">
+    <div class="content" style="margin-bottom:30px;">
+      <div style="line-height:1.2em; margin:-0.15em 0 0.3em 0;">Please enter anything else we may need to know (i.e. gate code, special feature of the home to make sure we get, etc.)</div>
+      <div style="padding:0 20px 0 0;"><textarea name="note" rows="2" style="height:46.8px;"></textarea></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PAYMENT ===================== -->
+<div class="cart cart-payment nocardonfile" style="margin:0 auto; padding:5px 30px; max-width:1200px; z-index:5;">
+  <div class="fontscale"><h2 style="margin:0 0 0.5em 0; opacity:1;">Payment Information</h2></div>
+  <div class="wrapper" style="margin:0 -10px; padding:0 10px;">
+    <div class="content" style="margin-bottom:20px;">
+      <div style="display:inline-block; width:220px; line-height:1.5em; padding-bottom:1em; vertical-align:top;">
+        <div class="subtotal" style="font-size:0.7em; margin-bottom:0.5em;">
+          <div style="line-height:1em;">Sub-Total</div><div class="subtotalamount" style="font-size:1.37em;">$1,598.00</div>
+        </div>
+        <div class="salestax" style="font-size:0.7em; margin-bottom:0.5em;">
+          <div style="line-height:1em;">Sales Tax <span class="taxrate">(13%)</span></div><div class="taxamount" style="font-size:1.7em;">$207.74</div>
+        </div>
+        Order Total
+        <div class="total" style="font-size:1.7em;">$1,805.74</div>
+        <div class="deposit" style="color:#F00; margin-top:0.5em; font-weight:700;">
+          Due Today<div class="depositamount" style="font-size:1.7em;">$1,805.74</div>
+        </div>
+        <div style="font-size:0.8em; margin-top:0.75em;">All amounts are in CAD</div>
+        <div class="promocode">
+          <div style="font-size:0.7em; font-weight:700; line-height:1em; margin-top:1em;">Promo Code</div>
+          <div style="display:flex;">
+            <input type="text" name="sPromoCode" placeholder="(optional)" style="font-size:0.85em; margin-right:5px; padding:0.25em 0.4em; text-transform:uppercase; width:75px;">
+            <button style="font-size:0.5em; border-radius:0.5em; border:1px solid #888; padding:0 0.4em;">Apply</button>
+          </div>
+        </div>
+      </div>
+      <div style="display:inline-block; width:100%; max-width:500px; padding-bottom:1em;">
+        <div class="billing-address" style="flex-basis:300px; flex-grow:1; margin:10px 40px 40px 0;">
+          Billing Information<br>
+          <div style="display:flex; flex-wrap:wrap;">
+            <div class="cap" style="width:152px;"><span style="white-space:nowrap;">Address</span></div>
+            <div class="inp" style="width:178px;"><input type="text" name="search_BillingAddress" maxlength="100" style="width:100%;"></div>
+            <div class="cap" style="width:152px;"><span style="white-space:nowrap;">City</span></div>
+            <div class="inp" style="width:178px;"><input type="text" name="search_BillingCity" maxlength="30" style="width:100%;"></div>
+            <div class="cap" style="width:152px;"><span style="white-space:nowrap;">Postal Code</span></div>
+            <div class="inp" style="width:178px;"><input type="text" name="search_BillingZipcode" maxlength="7" style="width:100%;"></div>
+          </div>
+        </div>
+        <div class="paymentoptions" style="display:flex; flex-direction:column; gap:1em; width:100%; max-width:500px; padding-bottom:1em;">
+          <div class="payopt payopt1 payopt2 selected">
+            <div><div style="display:inline-block; width:1.2em;"><input type="radio" name="nPayType" id="cart-payment-type2" checked></div>
+            <label for="cart-payment-type2">New Credit/Debit Card</label></div>
+          </div>
+          <div class="payopt payopt3">
+            <div style="display:inline-block; width:1.2em;"><input type="radio" name="nPayType" id="cart-payment-type3"></div>
+            <label for="cart-payment-type3">Send me an Invoice</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PLACE ORDER ===================== -->
+<div class="cart-order" style="margin:0 auto; padding:10px 30px 30px 30px; text-align:center; max-width:1200px; z-index:4;">
+  <div class="cart">
+    <button class="placeorder">Place My Order</button>
+    <div class="afterspace" style="height:3rem;"></div>
+  </div>
+</div>
+
+<div class="brandfooter footersnap" style="position:relative; background:#fff; color:#000; z-index:3;">
+  <div class="content" style="margin:0 auto; padding:1em; max-width:900px;">
+    <table style="width:100%;"><tbody><tr>
+      <td style="line-height:1.3em;">
+        <div style="font-size:1.2em; font-weight:700; line-height:1.3em;">HOUSY MEDIA</div>
+        <div>855-999-7093</div>
+        <a href="#" style="color:#000;">contact@example.com</a>
+      </td>
+      <td style="text-align:right;"><a href="#" class="icon">f</a><a href="#" class="icon">ig</a></td>
+    </tr></tbody></table>
+  </div>
+</div>
+
+<div class="footer footersnap fc1 bg2" style="background:#000; color:#fff; z-index:2;">
+  <div class="footer-text">
+    <span class="stack"><span class="norm">All information deemed reliable but not guaranteed.</span></span><br>
+    <span class="stack"><span class="norm">© 2026 </span><a href="#">HOUSY MEDIA</a><span class="norm"> — All rights reserved.</span></span>
+  </div>
+</div>
+
+</body>
+</html>

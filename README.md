@@ -3,92 +3,80 @@
 A custom-CSS makeover for the HDPhotoHub (hd.pics) order page at
 **https://housymedia.hd.pics/order**.
 
-HDPhotoHub lets site owners inject custom CSS into the shopping cart /
-order form, so this repo ships a single stylesheet you paste into your
-dashboard — no code changes on the platform side.
+HDPhotoHub lets site owners inject custom CSS into the shopping cart, so
+this repo ships a single stylesheet you paste into your dashboard — no code
+changes on the platform side.
 
 | Before (stock) | After (makeover) |
 |---|---|
-| ![Before](docs/before.png) | ![After](docs/after.png) |
+| ![Before](docs/hdpics-before.png) | ![After](docs/hdpics-after.png) |
 
-*Screenshots are from `preview/index.html`, a mock of a typical hd.pics
-order form built on stock Bootstrap.*
+*Screenshots are from `preview/hdpics-order.html`, a structural mock built
+from the live page's own markup and generated CSS (no personal data, no
+tracking, no API keys).*
 
 ## What the makeover does
 
-**Foundation**
-- **Typography** — Inter, a real type scale, tight tracking on headings, and
-  tabular numerals so every price and total lines up in a column.
-- **Color system** — set `--hm-brand` and the whole page re-tints. Hovers,
-  focus rings, badges, selected states and soft backgrounds are all derived
-  from it with `color-mix()` (with static fallbacks for older browsers).
-- **Depth** — layered low-alpha shadows and hairline borders instead of the
-  stock hard 1px boxes. Static panels don't animate; only things you can
-  actually click do.
+**Section panels** — each cart module (`.cart-products`, `.cart-location`,
+`.cart-gcal`, `.cart-note`, `.cart-payment`) becomes a rounded, lightly
+blurred white card floating over the hero photo. Steps the customer hasn't
+reached yet stay quiet instead of showing an empty card.
 
-**The parts that decide whether an order gets placed**
-- **Service picker** — each option is a proper selectable card: hover lift,
-  brand ring, tinted background and a left accent bar on the selected one,
-  price right-aligned and weighted.
-- **Order summary** — sticky on desktop so the total stays visible while the
-  customer works down the form; uppercase micro-headers, and the total set
-  at display size.
-- **Buttons** — solid brand primary with an inset highlight and a lift on
-  hover, quiet white secondary, press feedback, visible focus rings.
-- **Forms** — 1px borders with a soft inner shadow, brand focus ring,
-  branded checkboxes/radios via `accent-color`, flush input groups.
+**Service picker** — the part that decides whether an order gets placed:
+- Divider categories ("A La Carte", "Real Estate Media Standard Packages")
+  span the full row as real section headings instead of sitting in a narrow
+  370px box beside the product cards.
+- Product cards get hairline borders, soft shadows, edge-to-edge fluid
+  thumbnails and a hover lift.
+- Every product row is a selectable card — hover tint, and a brand ring plus
+  tinted fill when its checkbox is checked (`:has()`), so what's selected is
+  unmistakable.
+- Prices are tabular-figure aligned; the "reg." price is struck through and
+  muted instead of pink.
 
-**Polish**
-- **Mobile** — 46px tap targets, 16px inputs (stops iOS zooming on focus),
-  full-width primary actions, summary unsticks and stacks.
-- **Chrome** — translucent blurred navbar, softened modals and dropdowns,
-  thin scrollbar, brand text selection, tinted alerts and pill badges.
-- **Accessibility** — one consistent `:focus-visible` ring everywhere, and a
-  `prefers-reduced-motion` block that kills every transition and transform.
-- **Print** — the order prints cleanly: no navbar, no buttons, no shadows.
+**Forms** — the stock layout squeezes captions and fields into 65px/95px
+columns. Labels now sit above full-width fields as uppercase micro-labels,
+empty spacer captions collapse, and inputs get a proper border, focus ring
+and 16px sizing on mobile.
 
-Everything is CSS against the markup HDPhotoHub already renders — no added
-elements, no changed behaviour.
+**Calendar, payment, CTA** — rounded time slots with hover feedback, payment
+options as selectable cards, and a Place My Order button in brand blue with
+white text (the stock config renders black text on royal blue), a hover lift,
+and a disabled state that reads as "not yet" rather than broken.
+
+**Plus** — mobile pass (46px targets, no iOS zoom, full-width CTA, no fixed
+background), `prefers-reduced-motion`, and a print stylesheet.
 
 ## Install
 
-1. Open your HDPhotoHub dashboard → **Settings → Shopping Cart** (design /
-   custom CSS section).
-2. Paste the full contents of [`css/order-makeover.css`](css/order-makeover.css)
-   into the custom CSS field. If your dashboard only offers a custom
-   `<head>` HTML field, wrap the CSS in `<style> … </style>`.
-3. Save and reload `https://housymedia.hd.pics/order`.
+1. HDPhotoHub dashboard → site/cart settings → custom CSS.
+2. Paste the full contents of [`css/order-makeover.css`](css/order-makeover.css).
+3. Save and hard-reload `https://housymedia.hd.pics/order`.
 
 ## Re-branding
 
-All design decisions live at the top of the stylesheet:
-
 ```css
 :root {
-  --hm-brand:   #2563eb;  /* change this one line to re-brand the page */
-  --hm-ink:     #0b1220;  /* headings                                  */
-  --hm-page-bg: #f6f8fc;  /* page background                           */
-  --hm-radius:  16px;     /* card rounding                             */
-  ...
+  --hm-brand: #4169E1;  /* change this one line to re-brand the page */
 }
 ```
 
-`--hm-brand` is the only value you normally need to touch — buttons, links,
-focus rings, selected services, badges, alerts and the page's top glow are
-all mixed from it. Radius, shadow, motion and the neutral ramp are separate
-variables in the same block if you want to go further.
+It defaults to `#4169E1` — the accent the cart already uses for selected time
+slots and the order button — so it matches out of the box. Hovers, rings,
+tints, badges and selected states are all mixed from it with `color-mix()`,
+with static fallbacks for older browsers.
+
+## What this stylesheet deliberately does not touch
+
+The cart's JavaScript reveals each step by animating inline `height` and
+`opacity` on `.wrapper` / `.content`, and shows or hides products with
+`display` on `label.product` (`.filtered`, `.pkghide`, `.outofarea`).
+
+So this file **never** sets `height`, `opacity`, or `display` on those
+elements — product row styling is applied to the inner `<table>`, not the
+label. Keep that rule if you extend it, or ordering breaks.
 
 ## Local preview
 
-Open `preview/index.html` in a browser. It is a stand-alone mock of the
-order form (stock Bootstrap 5 + the makeover). Comment out the
-`order-makeover.css` `<link>` in that file to compare against the stock
-look.
-
-## Notes / limitations
-
-This stylesheet targets standard Bootstrap classes (`.card`, `.btn`,
-`.form-control`, `.list-group-item`, `.table`, …), which is what the
-hd.pics cart is built on. If a specific element on the live page doesn't
-pick up a style, grab its exact class/ID from the browser dev tools and
-add a matching rule — the variables make one-off overrides trivial.
+Open `preview/hdpics-order.html`. Comment out the `order-makeover.css`
+`<link>` near the top to compare against the stock look.
